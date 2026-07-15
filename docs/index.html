@@ -29,23 +29,14 @@
         <div class="hero-copy">
           <p class="eyebrow">Portfolio</p>
           <h1>Professional product builder with a focus on mobile, security, and payments.</h1>
-          <p class="summary">
-            This static profile site highlights confirmed work history, a published project, and a games area
-            with a responsive snake experience built in plain HTML, CSS, and JavaScript.
-          </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">View Projects</a>
             <a class="button" href="#games">Play Snake</a>
           </div>
         </div>
-        <aside class="hero-card" aria-label="Profile snapshot">
-          <p class="card-label">Current Focus</p>
-          <ul class="feature-list">
-            <li>Android product development</li>
-            <li>Security and payment flows</li>
-            <li>Responsive front-end experiments</li>
-          </ul>
-        </aside>
+        <div class="hero-photo-wrap" aria-label="Profile photo">
+          <img src="../assets/profile.jpg" alt="Profile photo of Kim, Seong-Il" class="profile-photo">
+        </div>
       </section>
 
       <section id="about" class="panel">
@@ -61,7 +52,7 @@
           Personal interests include table tennis and computer programming.
         </p>
         <p>
-          Additional biography, research topics, and public contact details are <strong>[사람 확인 필요]</strong>.
+          Born in 1985, male, email: <strong>spoon-fed-programmer@gmail.com</strong>.
         </p>
       </section>
 
@@ -84,8 +75,13 @@
           <h2>Published web service</h2>
         </div>
         <article class="project-card">
-          <h3>All That Converter</h3>
-          <p>Free online tools published on the web.</p>
+          <div class="project-brand">
+            <img src="../assets/icon-512.png" alt="All That Converter icon" class="project-icon">
+            <div>
+              <h3 class="project-gradient">AllThatConverter</h3>
+              <p>Free online tools published on the web.</p>
+            </div>
+          </div>
           <a class="button" href="https://allthatconverter.web.app/" target="_blank" rel="noreferrer">Open project</a>
         </article>
       </section>

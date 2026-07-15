@@ -140,6 +140,25 @@ main {
   padding: 1rem;
 }
 
+.hero-card,
+.hero-photo-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 24px;
+  margin-bottom: 0;
+  border: 0;
+  box-shadow: none;
+}
+
 .card-label,
 .eyebrow {
   margin: 0 0 0.5rem;
@@ -177,6 +196,30 @@ h2 {
 .feature-list {
   margin: 0;
   padding-left: 1.1rem;
+}
+
+.project-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project-icon {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.project-gradient {
+  margin-bottom: 0.35rem;
+  background: linear-gradient(90deg, #19d8ff 0%, #7c73ff 50%, #ff00e5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .hero-actions,
@@ -326,6 +369,10 @@ h2 {
   .hero,
   .panel {
     padding: 1.1rem;
+  }
+
+  .project-brand {
+    align-items: flex-start;
   }
 
   .control-button {
