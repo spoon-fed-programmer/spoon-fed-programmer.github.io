@@ -32,6 +32,7 @@
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">View Projects</a>
             <a class="button" href="#games">Play Snake</a>
+            <a class="button" href="#wonder-runner">Play Wonder Runner</a>
           </div>
         </div>
         <div class="hero-photo-wrap" aria-label="Profile photo">
@@ -100,14 +101,10 @@
       <section id="games" class="panel games-panel">
         <div class="section-heading">
           <p class="eyebrow">Games</p>
-          <h2>Snake</h2>
         </div>
-        <p class="games-copy">
-          Keyboard: Arrow keys or WASD. Mobile: use the on-screen controls. Pause, restart, score, growth,
-          collision, and best score are all included.
-        </p>
         <div class="game-layout">
           <div class="game-stage">
+            <h3 class="game-title">Snake</h3>
             <canvas id="snake-board" width="360" height="360" aria-label="Snake game board"></canvas>
             <div class="game-status" aria-live="polite">
               <p><span>Score</span><strong id="score">0</strong></p>
@@ -116,6 +113,10 @@
             </div>
           </div>
           <div class="game-sidebar">
+            <p class="games-copy">
+              Keyboard: Arrow keys or WASD. Mobile: use the on-screen controls. Pause, restart, score, growth,
+              collision, and best score are all included.
+            </p>
             <div class="game-actions">
               <button id="start-game" class="button button-primary" type="button">Start</button>
               <button id="pause-game" class="button" type="button">Pause</button>
@@ -131,6 +132,35 @@
             </div>
             <div class="game-note">
               <p>Educational setting note: earlier game scope mentioned Tetris, but this implementation follows the current snake-game requirement.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="wonder-runner" class="game-layout side-scroller-layout">
+          <div class="game-stage">
+            <h3 class="game-title">Wonder Runner</h3>
+            <canvas id="runner-board" width="720" height="320" aria-label="Side scrolling action game board"></canvas>
+            <div class="game-status" aria-live="polite">
+              <p><span>Score</span><strong id="runner-score">0</strong></p>
+              <p><span>Best</span><strong id="runner-best-score">0</strong></p>
+              <p><span>Status</span><strong id="runner-state">Ready</strong></p>
+            </div>
+          </div>
+          <div class="game-sidebar">
+            <p class="games-copy">
+              Keyboard: <strong>I</strong> or <strong>Space</strong> jump. Mobile: tap <strong>Jump</strong>.
+              Collect fruit, clear obstacles, and keep the run going.
+            </p>
+            <div class="game-actions">
+              <button id="runner-start" class="button button-primary" type="button">Start</button>
+              <button id="runner-pause" class="button" type="button">Pause</button>
+              <button id="runner-restart" class="button" type="button">Restart</button>
+            </div>
+            <div class="touch-controls" aria-label="Mobile side scroller controls">
+              <button class="control-button" type="button" data-runner-action="jump">Jump</button>
+            </div>
+            <div class="game-note">
+              <p>Arcade-style side scroller inspired by classic Wonder Boy energy, adapted into a compact browser run.</p>
             </div>
           </div>
         </div>
