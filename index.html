@@ -4,51 +4,143 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spoon Fed Programmer</title>
-  <meta name="description" content="Professional profile website with a matrix-inspired dark theme.">
+  <meta name="description" content="Professional profile website with a matrix-inspired dark theme and a playable snake game.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">Spoon Fed Programmer</div>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-      Menu
-    </button>
-    <nav id="site-nav" class="site-nav" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#games">Games</a>
-    </nav>
-  </header>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#home">Spoon Fed Programmer</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="#games">Games</a>
+      </nav>
+    </header>
 
-  <main>
-    <section id="about" class="hero">
-      <p class="eyebrow">Portfolio</p>
-      <h1>Professional profile with a matrix-inspired dark interface.</h1>
-      <p class="summary">
-        Building practical products with a focus on mobile app development, security, and payments.
-      </p>
-    </section>
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Portfolio</p>
+          <h1>Professional product builder with a focus on mobile, security, and payments.</h1>
+          <p class="summary">
+            This static profile site highlights confirmed work history, a published project, and a games area
+            with a responsive snake experience built in plain HTML, CSS, and JavaScript.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View Projects</a>
+            <a class="button" href="#games">Play Snake</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Profile snapshot">
+          <p class="card-label">Current Focus</p>
+          <ul class="feature-list">
+            <li>Android product development</li>
+            <li>Security and payment flows</li>
+            <li>Responsive front-end experiments</li>
+          </ul>
+        </aside>
+      </section>
 
-    <section id="experience" class="panel">
-      <h2>Experience</h2>
-      <p>2011 - Present: Samsung Electronics</p>
-      <p>Samsung Wallet Android app development, including security and payment-related work.</p>
-    </section>
+      <section id="about" class="panel">
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2>Building practical software that people trust.</h2>
+        </div>
+        <p>
+          Confirmed profile material shows ongoing work in Samsung Electronics since 2011, with hands-on
+          development experience around Samsung Wallet Android features as well as security and payment-related work.
+        </p>
+        <p>
+          Additional biography, research topics, and public contact details are <strong>[사람 확인 필요]</strong>.
+        </p>
+      </section>
 
-    <section id="projects" class="panel">
-      <h2>Projects</h2>
-      <p>All That Converter: free online tools.</p>
-      <p><a href="https://allthatconverter.web.app/" target="_blank" rel="noreferrer">Visit project</a></p>
-    </section>
+      <section id="experience" class="panel">
+        <div class="section-heading">
+          <p class="eyebrow">Experience</p>
+          <h2>Confirmed career history</h2>
+        </div>
+        <div class="timeline-item">
+          <p class="timeline-range">2011 - Present</p>
+          <h3>Samsung Electronics</h3>
+          <p>Samsung Wallet Android app development.</p>
+          <p>Security and payment-related responsibilities.</p>
+        </div>
+      </section>
 
-    <section id="games" class="panel games-panel">
-      <h2>Games</h2>
-      <p>Snake game area prepared. Full gameplay will be added in a later loop.</p>
-      <div class="game-placeholder" aria-label="Game placeholder">Game placeholder</div>
-    </section>
-  </main>
+      <section id="projects" class="panel">
+        <div class="section-heading">
+          <p class="eyebrow">Projects</p>
+          <h2>Published web service</h2>
+        </div>
+        <article class="project-card">
+          <h3>All That Converter</h3>
+          <p>Free online tools published on the web.</p>
+          <a class="button" href="https://allthatconverter.web.app/" target="_blank" rel="noreferrer">Open project</a>
+        </article>
+      </section>
+
+      <section id="contact" class="panel">
+        <div class="section-heading">
+          <p class="eyebrow">Contact</p>
+          <h2>Public contact status</h2>
+        </div>
+        <p>Direct public contact details are <strong>[사람 확인 필요]</strong>.</p>
+        <p>
+          Until public contact info is confirmed, this site should treat project links and repository history as the
+          available public footprint.
+        </p>
+      </section>
+
+      <section id="games" class="panel games-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Games</p>
+          <h2>Snake</h2>
+        </div>
+        <p class="games-copy">
+          Keyboard: Arrow keys or WASD. Mobile: use the on-screen controls. Pause, restart, score, growth,
+          collision, and best score are all included.
+        </p>
+        <div class="game-layout">
+          <div class="game-stage">
+            <canvas id="snake-board" width="360" height="360" aria-label="Snake game board"></canvas>
+            <div class="game-status" aria-live="polite">
+              <p><span>Score</span><strong id="score">0</strong></p>
+              <p><span>Best</span><strong id="best-score">0</strong></p>
+              <p><span>Status</span><strong id="game-state">Ready</strong></p>
+            </div>
+          </div>
+          <div class="game-sidebar">
+            <div class="game-actions">
+              <button id="start-game" class="button button-primary" type="button">Start</button>
+              <button id="pause-game" class="button" type="button">Pause</button>
+              <button id="restart-game" class="button" type="button">Restart</button>
+            </div>
+            <div class="touch-controls" aria-label="Mobile snake controls">
+              <button class="control-button" type="button" data-direction="up">Up</button>
+              <div class="control-row">
+                <button class="control-button" type="button" data-direction="left">Left</button>
+                <button class="control-button" type="button" data-direction="down">Down</button>
+                <button class="control-button" type="button" data-direction="right">Right</button>
+              </div>
+            </div>
+            <div class="game-note">
+              <p>Educational setting note: earlier game scope mentioned Tetris, but this implementation follows the current snake-game requirement.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script src="script.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
