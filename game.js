@@ -307,6 +307,8 @@ if (
   let collectibleCooldown = 0;
   let backgroundOffset = 0;
   let obstacleSpeed = 4.2;
+  let runnerElapsedFrames = 0;
+  let runnerDifficultyLevel = 0;
   let bestScore = Number.parseInt(localStorage.getItem(storageKey) || "0", 10);
   let obstacles = [];
   let collectibles = [];
@@ -348,6 +350,8 @@ if (
     collectibleCooldown = 95;
     backgroundOffset = 0;
     obstacleSpeed = 4.2;
+    runnerElapsedFrames = 0;
+    runnerDifficultyLevel = 0;
     obstacles = [];
     collectibles = [];
     hasStarted = false;
@@ -394,11 +398,13 @@ if (
   }
 
   function spawnObstacle() {
+    const width = 24 + Math.random() * 18 + runnerDifficultyLevel * 4;
+    const height = 26 + Math.random() * 16 + runnerDifficultyLevel * 5;
     obstacles.push({
       x: runnerCanvas.width + 30,
-      y: runnerCanvas.height - floorHeight - 26,
-      width: 24 + Math.random() * 18,
-      height: 26 + Math.random() * 16,
+      y: runnerCanvas.height - floorHeight - height,
+      width,
+      height,
     });
   }
 
@@ -485,6 +491,20 @@ if (
     drawRunnerFrame();
   }
 
+  function updateRunnerDifficulty() {
+    runnerElapsedFrames += 1;
+    const elapsedSeconds = runnerElapsedFrames / 60;
+    runnerDifficultyLevel = Math.floor(elapsedSeconds / 5);
+
+    obstacleSpeed = 4.2 + Math.min(runnerDifficultyLevel * 0.55, 4.4);
+
+    const targetObstacleCount = Math.min(1 + runnerDifficultyLevel, 4);
+    if (obstacles.length < targetObstacleCount && obstacleCooldown <= 12) {
+      spawnObstacle();
+      obstacleCooldown = Math.max(22, 54 - runnerDifficultyLevel * 5);
+    }
+  }
+
   function updateRunnerGame() {
     if (isPaused || isGameOver) {
       return;
@@ -515,8 +535,8 @@ if (
       player.grounded = false;
     }
 
+    updateRunnerDifficulty();
     distance += obstacleSpeed;
-    obstacleSpeed = 4.2 + Math.min(distance / 900, 3.4);
     score = Math.floor(distance / 8);
 
     obstacleCooldown -= 1;
@@ -524,12 +544,12 @@ if (
 
     if (obstacleCooldown <= 0) {
       spawnObstacle();
-      obstacleCooldown = 55 + Math.floor(Math.random() * 32);
+      obstacleCooldown = Math.max(20, 54 - runnerDifficultyLevel * 5) + Math.floor(Math.random() * 18);
     }
 
     if (collectibleCooldown <= 0) {
       spawnCollectible();
-      collectibleCooldown = 85 + Math.floor(Math.random() * 55);
+      collectibleCooldown = Math.max(50, 92 - runnerDifficultyLevel * 4) + Math.floor(Math.random() * 30);
     }
 
     obstacles = obstacles.filter((obstacle) => obstacle.x + obstacle.width > -40);
