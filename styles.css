@@ -1,0 +1,134 @@
+:root {
+  --bg: #07110b;
+  --bg-alt: #0d1c14;
+  --panel: rgba(10, 25, 16, 0.88);
+  --line: rgba(120, 255, 170, 0.18);
+  --text: #ebfff1;
+  --muted: #98c3a2;
+  --accent: #7dff9b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    linear-gradient(rgba(125, 255, 155, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 255, 155, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at top, #12311f 0%, var(--bg) 55%);
+  background-size: 24px 24px, 24px 24px, auto;
+}
+
+a {
+  color: var(--accent);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(4, 10, 7, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.menu-toggle {
+  display: none;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  padding: 0.65rem 0.85rem;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.site-nav a {
+  text-decoration: none;
+}
+
+main {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.hero,
+.panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.summary {
+  max-width: 60ch;
+  color: var(--muted);
+}
+
+.games-panel {
+  min-height: 220px;
+}
+
+.game-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+  background: rgba(125, 255, 155, 0.03);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header {
+    flex-wrap: wrap;
+  }
+
+  .site-nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 0.5rem;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  main {
+    width: min(100% - 1rem, 1100px);
+    padding-top: 1rem;
+  }
+}
