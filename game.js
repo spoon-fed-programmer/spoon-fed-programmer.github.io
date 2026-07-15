@@ -289,9 +289,7 @@ if (
     y: 0,
     width: 36,
     height: 46,
-    velocityX: 0,
     velocityY: 0,
-    speed: 4.5,
     jumpStrength: -12.5,
     grounded: true,
     facing: "right",
@@ -312,10 +310,6 @@ if (
   let bestScore = Number.parseInt(localStorage.getItem(storageKey) || "0", 10);
   let obstacles = [];
   let collectibles = [];
-  const runnerInput = {
-    left: false,
-    right: false,
-  };
 
   runnerBestScoreElement.textContent = String(bestScore);
 
@@ -338,12 +332,9 @@ if (
   function resetRunner() {
     cancelRunnerLoop();
     player.y = runnerCanvas.height - floorHeight - player.height;
-    player.velocityX = 0;
     player.velocityY = 0;
     player.grounded = true;
     player.facing = "right";
-    runnerInput.left = false;
-    runnerInput.right = false;
     score = 0;
     distance = 0;
     obstacleCooldown = 40;
@@ -377,18 +368,6 @@ if (
   }
 
   function setRunnerAction(action, isPressed) {
-    if (action === "left") {
-      runnerInput.left = isPressed;
-      if (isPressed) {
-        player.facing = "left";
-      }
-    }
-    if (action === "right") {
-      runnerInput.right = isPressed;
-      if (isPressed) {
-        player.facing = "right";
-      }
-    }
     if (action === "jump" && isPressed) {
       jumpRunner();
       if (!hasStarted) {
@@ -510,19 +489,6 @@ if (
       return;
     }
 
-    if (runnerInput.left && !runnerInput.right) {
-      player.velocityX = -player.speed;
-      player.facing = "left";
-    } else if (runnerInput.right && !runnerInput.left) {
-      player.velocityX = player.speed;
-      player.facing = "right";
-    } else {
-      player.velocityX *= 0.72;
-    }
-
-    player.x += player.velocityX;
-    player.x = Math.max(40, Math.min(runnerCanvas.width - player.width - 40, player.x));
-
     player.velocityY += gravity;
     player.y += player.velocityY;
 
@@ -634,10 +600,6 @@ if (
 
   document.addEventListener("keydown", (event) => {
     const runnerKeys = {
-      j: "left",
-      J: "left",
-      l: "right",
-      L: "right",
       i: "jump",
       I: "jump",
     };
@@ -646,9 +608,6 @@ if (
     if (action) {
       event.preventDefault();
       setRunnerAction(action, true);
-      if (action !== "jump" && !hasStarted) {
-        startRunnerGame();
-      }
     }
 
     if (event.key === " " && runnerCanvas) {
@@ -660,15 +619,6 @@ if (
     }
   });
 
-  document.addEventListener("keyup", (event) => {
-    if (event.key === "j" || event.key === "J") {
-      setRunnerAction("left", false);
-    }
-    if (event.key === "l" || event.key === "L") {
-      setRunnerAction("right", false);
-    }
-  });
-
   runnerActionButtons.forEach((button) => {
     const action = button.getAttribute("data-runner-action");
     if (!action) {
@@ -676,22 +626,11 @@ if (
     }
 
     const press = () => setRunnerAction(action, true);
-    const release = () => {
-      if (action !== "jump") {
-        setRunnerAction(action, false);
-      }
-    };
 
     button.addEventListener("mousedown", press);
-    button.addEventListener("mouseup", release);
-    button.addEventListener("mouseleave", release);
     button.addEventListener("touchstart", (event) => {
       event.preventDefault();
       press();
-    }, { passive: false });
-    button.addEventListener("touchend", (event) => {
-      event.preventDefault();
-      release();
     }, { passive: false });
     button.addEventListener("click", () => {
       if (action === "jump") {
